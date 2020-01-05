@@ -1,4 +1,5 @@
 ﻿using CursoOnline.Domain.Enums;
+using System;
 
 namespace CursoOnline.Domain
 {
@@ -11,6 +12,11 @@ namespace CursoOnline.Domain
 
         public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor)
         {
+            if (string.IsNullOrEmpty(nome) || cargaHoraria < 1 || valor < 1)
+            {
+                throw new ArgumentException("Parametros inválidos!");
+            }
+
             this.Nome = nome;
             this.CargaHoraria = cargaHoraria;
             this.PublicoAlvo = publicoAlvo;
